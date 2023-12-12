@@ -2,7 +2,7 @@
 
 class lesson5{
 
-
+/*
 static void Main(){
     Console.Clear();
     Console.WriteLine("Введите позицию элемента i в двумерном массиве:");
@@ -18,7 +18,11 @@ static void Main(){
         int.TryParse(lineJ, out numberJ);
 
     firstTask(numberI, numberJ);
-    //secondTask();
+}
+*/
+static void Main(){
+    Console.Clear();
+    secondTask();
 }
 
 
@@ -58,6 +62,50 @@ static void Main(){
         Console.WriteLine("Некорректный ввод. Пожалуйста, введите целое число.");    
 
     return false;
+    }
+
+    //Задача 2: Задайте двумерный массив. Напишите программу,
+    //которая поменяет местами первую и последнюю строку массива.
+    static void secondTask(){
+        Console.Clear();
+        Random rnd =  new Random();
+
+        int endI = rnd.Next(1, 8);
+        int endJ = rnd.Next(1, 8);
+        int[ , ] array = new int [endI,endJ];
+
+        //Console.WriteLine($"Двумерный массив содержит {endI} строк и {endJ} столбцов ");
+
+        for(int i=0; i<endI; i++) 
+            for(int j=0; j<endJ; j++) 
+                array[i,j] = rnd.Next(1, 1000);
+        
+        Console.WriteLine($"Исходный массив:");
+        for(int i=0; i< endI; i++){
+            for(int j=0; j< endJ; j++){
+                Console.Write($" {array[i,j]}\t");
+        }
+        Console.Write("\n");
+        }
+
+        int numberI = array.GetUpperBound(0)+1;
+          
+
+        for(int j=0; j<endJ; j++) {
+            int temp = array[0,j];
+            array[0, j] = array[numberI-1, j];
+            array[numberI-1, j] = temp;
+        }
+
+
+        Console.WriteLine($"Преобразованный массив:");
+        for(int i=0; i< endI; i++){
+            for(int j=0; j< endJ; j++){
+                Console.Write($" {array[i,j]}\t");
+        }
+        Console.Write("\n");
+        }
+
     }
 
 
