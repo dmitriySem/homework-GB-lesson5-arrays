@@ -22,7 +22,8 @@ static void Main(){
 */
 static void Main(){
     Console.Clear();
-    secondTask();
+    //secondTask();
+    thirdTask();
 }
 
 
@@ -67,6 +68,7 @@ static void Main(){
     //Задача 2: Задайте двумерный массив. Напишите программу,
     //которая поменяет местами первую и последнюю строку массива.
     static void secondTask(){
+
         Console.Clear();
         Random rnd =  new Random();
 
@@ -109,6 +111,53 @@ static void Main(){
     }
 
 
+
+    //Задача 3: Задайте прямоугольный двумерный массив. Напишите программу, 
+    //которая будет находить строку с наименьшей суммой элементов.
+    static void thirdTask(){
+        Random rnd =  new Random();
+        //int endI = rnd.Next(1, 20);
+        int endI = 3;
+        int[ , ] array = new int [endI,endI];
+
+
+        for(int i=0; i<endI; i++) 
+            for(int j=0; j<endI; j++) 
+                array[i,j] = rnd.Next(1, 100);
+
+        Console.WriteLine($"Исходный массив:");
+        for(int i=0; i< endI; i++){
+            for(int j=0; j< endI; j++){
+                Console.Write($" {array[i,j]}\t");
+        }
+        Console.Write("\n");
+        }
+
+        int sum = 0;
+        int indexMin = 0;
+        int min=99999999;
+        for(int i=0; i<endI; i++) {
+            sum = 0;
+            
+            for(int j=0; j<endI; j++)  
+                sum = sum + array[i, j]; 
+            if(i == 0) 
+                min = sum;
+                        
+            if((sum<min) && (i != 0 )) {
+                min = sum;
+                indexMin = i;
+            }           
+        }
+
+        Console.Write($"Строка с минимальной суммой: {min}:\t");
+
+        for(int j=0; j<endI; j++)
+            Console.Write($"{array[indexMin, j]}\t");
+
+
+
+    }
 
 
 }
